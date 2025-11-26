@@ -1,0 +1,7 @@
+{
+  "image_path": "tests/fixtures/PXL_20251116_223654116.jpg",
+  "image_name": "PXL_20251116_223654116",
+  "strip_detection": {
+    "success": true,
+    "strip_region": {
+      "left": 

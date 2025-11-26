@@ -1,0 +1,50 @@
+{
+  "strategy_name": "color linear",
+  "image_name": "test_image",
+  "timestamp": "2025-11-24T07:02:15.100640",
+  "steps": [
+    {
+      "step_name": "color_01_lab",
+      "description": "LAB color space conversion",
+      "image_file": "step_00_color_01_lab.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "color_02_L_channel",
+      "description": "L (lightness) channel",
+      "image_file": "step_01_color_02_L_channel.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "color_03_projection",
+      "description": "Horizontal projection of L values",
+      "image_file": "step_02_color_03_projection.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "color_03b_vertical_projection",
+      "description": "Vertical projection (top=1, bottom=1762)",
+      "image_file": "step_03_color_03b_vertical_projection.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "color_04_candidate_region",
+      "description": "Detected bright region",
+      "image_file": "step_04_color_04_candidate_region.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "color_05_pad_validation",
+      "description": "Periodic pad detection (425 dips)",
+      "image_file": "step_05_color_05_pad_validation.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "color_06_final",
+      "description": "Final strip region",
+      "image_file": "step_06_color_06_final.jpg",
+      "data": {}
+    }
+  ],
+  "final_image": "final_result.jpg"
+}

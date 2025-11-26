@@ -1,0 +1,74 @@
+{
+  "strategy_name": "yolo_detection",
+  "image_name": "PXL_20251116_223654116",
+  "timestamp": "2025-11-23T21:29:55.754296",
+  "steps": [
+    {
+      "step_name": "00_input",
+      "description": "Input image",
+      "image_file": "step_00_00_input.jpg",
+      "data": {
+        "width": 2268,
+        "height": 4032,
+        "channels": 3
+      }
+    },
+    {
+      "step_name": "00_yolo_init",
+      "description": "YOLO detector initialized",
+      "image_file": "step_01_00_yolo_init.jpg",
+      "data": {
+        "model_path": "./models/best.pt",
+        "confidence_threshold": 0.01,
+        "img_size": 640
+      }
+    },
+    {
+      "step_name": "01_yolo_detection",
+      "description": "YOLO strip detection",
+      "image_file": "step_02_01_yolo_detection.jpg",
+      "data": {
+        "bbox": {
+          "x1": 1462,
+          "y1": 1522,
+          "x2": 1704,
+          "y2": 3551
+        },
+        "confidence": 0.021591223776340485,
+        "width": 242,
+        "height": 2029
+      }
+    },
+    {
+      "step_name": "02_cropped_region",
+      "description": "Cropped to YOLO-detected region",
+      "image_file": "step_03_02_cropped_region.jpg",
+      "data": {
+        "crop_size": "242x2029"
+      }
+    },
+    {
+      "step_name": "03_final_result",
+      "description": "Final detection result",
+      "image_file": "step_04_03_final_result.jpg",
+      "data": {
+        "method": "yolo",
+        "confidence": 0.021591223776340485,
+        "strip_region": {
+          "left": 1462,
+          "top": 1522,
+          "right": 1704,
+          "bottom": 3551
+        },
+        "yolo_bbox": {
+          "x1": 1462,
+          "y1": 1522,
+          "x2": 1704,
+          "y2": 3551
+        },
+        "yolo_confidence": 0.021591223776340485
+      }
+    }
+  ],
+  "final_image": "final_result.jpg"
+}

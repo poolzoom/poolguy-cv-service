@@ -1,0 +1,50 @@
+{
+  "strategy_name": "deterministic",
+  "image_name": "PXL_20250428_134210676.MP",
+  "timestamp": "2025-11-24T16:33:22.413135",
+  "steps": [
+    {
+      "step_name": "00_input",
+      "description": "Input image",
+      "image_file": "step_00_00_input.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "canny_01_gray",
+      "description": "Grayscale conversion",
+      "image_file": "step_01_canny_01_gray.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "canny_02_blur",
+      "description": "Gaussian blur (5x5)",
+      "image_file": "step_02_canny_02_blur.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "canny_03_edges",
+      "description": "Canny edge detection (50, 150)",
+      "image_file": "step_03_canny_03_edges.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "canny_04_contours",
+      "description": "All contours (22 found)",
+      "image_file": "step_04_canny_04_contours.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "canny_05_filtered",
+      "description": "Filtered candidates (0 valid)",
+      "image_file": "step_05_canny_05_filtered.jpg",
+      "data": {}
+    },
+    {
+      "step_name": "01_yolo_detected",
+      "description": "YOLO detection only (conf=0.120)",
+      "image_file": "step_06_01_yolo_detected.jpg",
+      "data": {}
+    }
+  ],
+  "final_image": "final_result.jpg"
+}

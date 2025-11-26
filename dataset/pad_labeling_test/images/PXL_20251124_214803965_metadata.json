@@ -1,0 +1,98 @@
+{
+  "original_image": "tests/fixtures/PXL_20251124_214803965.jpg",
+  "original_size": {
+    "width": 992,
+    "height": 1762
+  },
+  "cropped_image": "dataset/pad_labeling_test/images/PXL_20251124_214803965_cropped.jpg",
+  "cropped_size": {
+    "width": 232,
+    "height": 844
+  },
+  "rotation_angle": 0.7997299685486894,
+  "yolo_confidence_original": 0.66844242811203,
+  "yolo_confidence_rotated": 0.6292241215705872,
+  "bbox_original": {
+    "x1": 405,
+    "y1": 400,
+    "x2": 623,
+    "y2": 1219
+  },
+  "bbox_rotated": {
+    "x1": 420,
+    "y1": 404,
+    "x2": 632,
+    "y2": 1228
+  },
+  "bbox_cropped": {
+    "x1": 410,
+    "y1": 394,
+    "x2": 642,
+    "y2": 1238,
+    "width": 232,
+    "height": 844
+  },
+  "strip_dimensions": {
+    "width": 212,
+    "height": 824
+  },
+  "pca_params": {
+    "foreground_points_count": 128494,
+    "threshold_method": "otsu",
+    "crop_size": [
+      899,
+      260
+    ],
+    "bbox_original": {
+      "x1": 405,
+      "y1": 400,
+      "x2": 623,
+      "y2": 1219
+    },
+    "bbox_expanded": {
+      "x1": 384,
+      "y1": 360,
+      "x2": 644,
+      "y2": 1259
+    },
+    "expansion": {
+      "x": 21,
+      "y": 40
+    },
+    "centered_points_shape": [
+      128494,
+      2
+    ],
+    "center": [
+      518.2097062897878,
+      131.53529347673822
+    ],
+    "pca_components": [
+      [
+        0.9999025898010885,
+        -0.013957467860479291
+      ],
+      [
+        0.013957467860479291,
+        0.9999025898010885
+      ]
+    ],
+    "pca_explained_variance": [
+      68394.05660191529,
+      5409.001858066202
+    ],
+    "pca_explained_variance_ratio": [
+      0.9267103292067612,
+      0.07328967079323881
+    ],
+    "pc1": [
+      0.9999025898010885,
+      -0.013957467860479291
+    ],
+    "angle_rad": 1.584754247872942,
+    "angle_deg": 90.79972996854869,
+    "aspect_ratio": 3.457692307692308,
+    "rotation_needed": 0.7997299685486894
+  },
+  "use_rotated_detection": true
+}

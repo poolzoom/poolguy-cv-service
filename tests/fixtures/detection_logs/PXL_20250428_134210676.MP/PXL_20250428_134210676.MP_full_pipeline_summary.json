@@ -1,0 +1,161 @@
+{
+  "image_path": "tests/fixtures/PXL_20250428_134210676.MP.jpg",
+  "image_name": "PXL_20250428_134210676.MP",
+  "strip_detection": {
+    "success": true,
+    "strip_region": {
+      "left": 414,
+      "top": 678,
+      "right": 576,
+      "bottom": 1717,
+      "width": 162,
+      "height": 1039,
+      "confidence": 1.0,
+      "detection_method": "yolo+refined",
+      "orientation": "vertical",
+      "angle": -30.0
+    },
+    "yolo_confidence": 0.1200733557343483,
+    "method": "yolo_refined"
+  },
+  "color_extraction": {
+    "success": true,
+    "pads_detected": 6,
+    "overall_confidence": 0.737343394459636,
+    "pads": [
+      {
+        "pad_index": 0,
+        "region": {
+          "pad_index": 0,
+          "x": 471,
+          "y": 678,
+          "width": 105,
+          "height": 158,
+          "left": 471,
+          "top": 678,
+          "right": 576,
+          "bottom": 836
+        },
+        "lab": {
+          "L": 80.57769740807716,
+          "a": 0.2355033152501507,
+          "b": 4.8427968655816755
+        },
+        "confidence": 0.7290228011295647,
+        "pad_detection_confidence": 0.7290228011295647,
+        "color_variance": 6.15983008204492
+      },
+      {
+        "pad_index": 1,
+        "region": {
+          "pad_index": 1,
+          "x": 519,
+          "y": 719,
+          "width": 57,
+          "height": 76,
+          "left": 519,
+          "top": 719,
+          "right": 576,
+          "bottom": 795
+        },
+        "lab": {
+          "L": 86.61334256694367,
+          "a": 0.3621883656509695,
+          "b": 3.543628808864266
+        },
+        "confidence": 0.7267155008622747,
+        "pad_detection_confidence": 0.7267155008622747,
+        "color_variance": 5.952759570601374
+      },
+      {
+        "pad_index": 2,
+        "region": {
+          "pad_index": 2,
+          "x": 430,
+          "y": 807,
+          "width": 129,
+          "height": 129,
+          "left": 430,
+          "top": 807,
+          "right": 559,
+          "bottom": 936
+        },
+        "lab": {
+          "L": 93.42557538609458,
+          "a": 3.8766300102157323,
+          "b": 0.9766840935039962
+        },
+        "confidence": 0.7327511222273261,
+        "pad_detection_confidence": 0.7327511222273261,
+        "color_variance": 7.042019937272229
+      },
+      {
+        "pad_index": 3,
+        "region": {
+          "pad_index": 3,
+          "x": 439,
+          "y": 1261,
+          "width": 38,
+          "height": 27,
+          "left": 439,
+          "top": 1261,
+          "right": 477,
+          "bottom": 1288
+        },
+        "lab": {
+          "L": 100.0,
+          "a": 28.314814814814813,
+          "b": 6.253411306042885
+        },
+        "confidence": 0.7780358833737253,
+        "pad_detection_confidence": 0.7780358833737253,
+        "color_variance": 0.8242125113441063
+      },
+      {
+        "pad_index": 4,
+        "region": {
+          "pad_index": 4,
+          "x": 523,
+          "y": 1380,
+          "width": 53,
+          "height": 59,
+          "left": 523,
+          "top": 1380,
+          "right": 576,
+          "bottom": 1439
+        },
+        "lab": {
+          "L": 86.96642149024625,
+          "a": 13.378317876559002,
+          "b": 3.9475535657179406
+        },
+        "confidence": 0.6898681374463808,
+        "pad_detection_confidence": 0.6898681374463808,
+        "color_variance": 12.025082303324437
+      },
+      {
+        "pad_index": 5,
+        "region": {
+          "pad_index": 5,
+          "x": 449,
+          "y": 1644,
+          "width": 30,
+          "height": 30,
+          "left": 449,
+          "top": 1644,
+          "right": 479,
+          "bottom": 1674
+        },
+        "lab": {
+          "L": 100.0,
+          "a": 23.68,
+          "b": 4.992222222222222
+        },
+        "confidence": 0.7676669217185448,
+        "pad_detection_confidence": 0.7676669217185448,
+        "color_variance": 0.6240750135894176
+      }
+    ]
+  },
+  "full_pipeline_success": true
+}

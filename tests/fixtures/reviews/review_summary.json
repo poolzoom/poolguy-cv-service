@@ -1,0 +1,412 @@
+{
+  "processed": 4,
+  "successful": 4,
+  "failed": 0,
+  "timestamp": "2025-11-23T09:34:00.954408",
+  "results": [
+    {
+      "image_path": "tests/fixtures/PXL_20250427_161114135 (1).jpg",
+      "output_path": "tests/fixtures/reviews/PXL_20250427_161114135 (1)_review.jpg",
+      "result": {
+        "success": true,
+        "data": {
+          "pads": [
+            {
+              "pad_index": 0,
+              "lab": {
+                "L": 95.75755719892416,
+                "a": 0.15991201343275202,
+                "b": 0.2582895697130229
+              },
+              "pad_detection_confidence": 0.7590599365301912,
+              "color_variance": 3.3751613112250944
+            },
+            {
+              "pad_index": 1,
+              "lab": {
+                "L": 92.93861865172325,
+                "a": 0.1913478174329766,
+                "b": 0.19459627741286828
+              },
+              "pad_detection_confidence": 0.7524742482440899,
+              "color_variance": 4.363014554140275
+            },
+            {
+              "pad_index": 2,
+              "lab": {
+                "L": 93.86382879365517,
+                "a": 0.21108482742077891,
+                "b": 0.331424576016005
+              },
+              "pad_detection_confidence": 0.7563994385604911,
+              "color_variance": 3.7742360066801144
+            },
+            {
+              "pad_index": 3,
+              "lab": {
+                "L": 89.51253834101429,
+                "a": 1.058037195249542,
+                "b": 0.8730548793246878
+              },
+              "pad_detection_confidence": 0.7181358209229637,
+              "color_variance": 9.513778652309233
+            },
+            {
+              "pad_index": 4,
+              "lab": {
+                "L": 89.3115791139079,
+                "a": 0.3470774067439356,
+                "b": 0.7192748763645829
+              },
+              "pad_detection_confidence": 0.7484605349069461,
+              "color_variance": 4.965071554711863
+            },
+            {
+              "pad_index": 5,
+              "lab": {
+                "L": 89.50290651682411,
+                "a": 0.22939664895707337,
+                "b": 0.42554060192202675
+              },
+              "pad_detection_confidence": 0.751910714304796,
+              "color_variance": 4.44754464503438
+            }
+          ],
+          "overall_confidence": 0.7477401155782464
+        }
+      },
+      "quality_result": {
+        "success": true,
+        "valid": false,
+        "metrics": {
+          "brightness": 0.5394611754166687,
+          "contrast": 0.08489141262998989,
+          "focus_score": 0.16080096135139177
+        },
+        "errors": [
+          {
+            "type": "contrast",
+            "message": "Image has low contrast (0.08) - ensure clear lighting",
+            "threshold": 0.5,
+            "actual": 0.08489141262998989
+          },
+          {
+            "type": "focus",
+            "message": "Image too blurry (focus score: 0.16) - hold camera steady",
+            "threshold": 0.5,
+            "actual": 0.16080096135139177
+          }
+        ],
+        "warnings": [],
+        "recommendations": [
+          "Ensure clear, even lighting across the test strip",
+          "Hold camera steady while taking photo",
+          "Ensure test strip is in focus before capturing"
+        ]
+      }
+    },
+    {
+      "image_path": "tests/fixtures/PXL_20250427_161114135.jpg",
+      "output_path": "tests/fixtures/reviews/PXL_20250427_161114135_review.jpg",
+      "result": {
+        "success": true,
+        "data": {
+          "pads": [
+            {
+              "pad_index": 0,
+              "lab": {
+                "L": 95.75755719892416,
+                "a": 0.15991201343275202,
+                "b": 0.2582895697130229
+              },
+              "pad_detection_confidence": 0.7590599365301912,
+              "color_variance": 3.3751613112250944
+            },
+            {
+              "pad_index": 1,
+              "lab": {
+                "L": 92.93861865172325,
+                "a": 0.1913478174329766,
+                "b": 0.19459627741286828
+              },
+              "pad_detection_confidence": 0.7524742482440899,
+              "color_variance": 4.363014554140275
+            },
+            {
+              "pad_index": 2,
+              "lab": {
+                "L": 93.86382879365517,
+                "a": 0.21108482742077891,
+                "b": 0.331424576016005
+              },
+              "pad_detection_confidence": 0.7563994385604911,
+              "color_variance": 3.7742360066801144
+            },
+            {
+              "pad_index": 3,
+              "lab": {
+                "L": 89.51253834101429,
+                "a": 1.058037195249542,
+                "b": 0.8730548793246878
+              },
+              "pad_detection_confidence": 0.7181358209229637,
+              "color_variance": 9.513778652309233
+            },
+            {
+              "pad_index": 4,
+              "lab": {
+                "L": 89.3115791139079,
+                "a": 0.3470774067439356,
+                "b": 0.7192748763645829
+              },
+              "pad_detection_confidence": 0.7484605349069461,
+              "color_variance": 4.965071554711863
+            },
+            {
+              "pad_index": 5,
+              "lab": {
+                "L": 89.50290651682411,
+                "a": 0.22939664895707337,
+                "b": 0.42554060192202675
+              },
+              "pad_detection_confidence": 0.751910714304796,
+              "color_variance": 4.44754464503438
+            }
+          ],
+          "overall_confidence": 0.7477401155782464
+        }
+      },
+      "quality_result": {
+        "success": true,
+        "valid": false,
+        "metrics": {
+          "brightness": 0.5394611754166687,
+          "contrast": 0.08489141262998989,
+          "focus_score": 0.16080096135139177
+        },
+        "errors": [
+          {
+            "type": "contrast",
+            "message": "Image has low contrast (0.08) - ensure clear lighting",
+            "threshold": 0.5,
+            "actual": 0.08489141262998989
+          },
+          {
+            "type": "focus",
+            "message": "Image too blurry (focus score: 0.16) - hold camera steady",
+            "threshold": 0.5,
+            "actual": 0.16080096135139177
+          }
+        ],
+        "warnings": [],
+        "recommendations": [
+          "Ensure clear, even lighting across the test strip",
+          "Hold camera steady while taking photo",
+          "Ensure test strip is in focus before capturing"
+        ]
+      }
+    },
+    {
+      "image_path": "tests/fixtures/PXL_20250427_161129434.MP.jpg",
+      "output_path": "tests/fixtures/reviews/PXL_20250427_161129434.MP_review.jpg",
+      "result": {
+        "success": true,
+        "data": {
+          "pads": [
+            {
+              "pad_index": 0,
+              "lab": {
+                "L": 99.99161346133235,
+                "a": 0.2311944023395036,
+                "b": 0.4339347960334594
+              },
+              "pad_detection_confidence": 0.7973379541575285,
+              "color_variance": 0.4248944133570948
+            },
+            {
+              "pad_index": 1,
+              "lab": {
+                "L": 99.94853117551891,
+                "a": 0.1685333190431716,
+                "b": 0.582733656903424
+              },
+              "pad_detection_confidence": 0.7961023869417249,
+              "color_variance": 0.6102294957276473
+            },
+            {
+              "pad_index": 2,
+              "lab": {
+                "L": 96.79808256651305,
+                "a": 2.1907430373738768,
+                "b": 3.132343484451794
+              },
+              "pad_detection_confidence": 0.737171017148757,
+              "color_variance": 9.44993496467284
+            },
+            {
+              "pad_index": 3,
+              "lab": {
+                "L": 94.59443755454504,
+                "a": 0.25229408132122755,
+                "b": 0.965470120802903
+              },
+              "pad_detection_confidence": 0.7531939416967888,
+              "color_variance": 7.046496282468065
+            },
+            {
+              "pad_index": 4,
+              "lab": {
+                "L": 99.89438294571269,
+                "a": 0.03962712885132618,
+                "b": 0.713133934540852
+              },
+              "pad_detection_confidence": 0.7954956363028934,
+              "color_variance": 0.7012420915523729
+            },
+            {
+              "pad_index": 5,
+              "lab": {
+                "L": 99.82050025773327,
+                "a": 0.011240743292555337,
+                "b": 0.6318241901816382
+              },
+              "pad_detection_confidence": 0.7938416189599324,
+              "color_variance": 0.9493446929965161
+            }
+          ],
+          "overall_confidence": 0.7788570925346042
+        }
+      },
+      "quality_result": {
+        "success": true,
+        "valid": false,
+        "metrics": {
+          "brightness": 0.6153025806516023,
+          "contrast": 0.1366700611289377,
+          "focus_score": 0.2724468287231622
+        },
+        "errors": [
+          {
+            "type": "contrast",
+            "message": "Image has low contrast (0.14) - ensure clear lighting",
+            "threshold": 0.5,
+            "actual": 0.1366700611289377
+          },
+          {
+            "type": "focus",
+            "message": "Image too blurry (focus score: 0.27) - hold camera steady",
+            "threshold": 0.5,
+            "actual": 0.2724468287231622
+          }
+        ],
+        "warnings": [],
+        "recommendations": [
+          "Ensure clear, even lighting across the test strip",
+          "Hold camera steady while taking photo",
+          "Ensure test strip is in focus before capturing"
+        ]
+      }
+    },
+    {
+      "image_path": "tests/fixtures/PXL_20251116_223654116.jpg",
+      "output_path": "tests/fixtures/reviews/PXL_20251116_223654116_review.jpg",
+      "result": {
+        "success": true,
+        "data": {
+          "pads": [
+            {
+              "pad_index": 0,
+              "lab": {
+                "L": 64.15465782718091,
+                "a": 0.031735642215179216,
+                "b": 1.3985258167082613
+              },
+              "pad_detection_confidence": 0.6888219090592419,
+              "color_variance": 12.352658089707722
+            },
+            {
+              "pad_index": 1,
+              "lab": {
+                "L": 77.36038384395144,
+                "a": 1.0392048035357944,
+                "b": 10.149845104854062
+              },
+              "pad_detection_confidence": 0.6452747794860869,
+              "color_variance": 18.884727525681
+            },
+            {
+              "pad_index": 2,
+              "lab": {
+                "L": 80.54725705449145,
+                "a": 4.190558030815713,
+                "b": 8.327822689714656
+              },
+              "pad_detection_confidence": 0.6399443586672411,
+              "color_variance": 19.684290648507858
+            },
+            {
+              "pad_index": 3,
+              "lab": {
+                "L": 78.62620254262806,
+                "a": 2.381859915585973,
+                "b": 1.5270734769494587
+              },
+              "pad_detection_confidence": 0.6836538954201367,
+              "color_variance": 13.127860135573515
+            },
+            {
+              "pad_index": 4,
+              "lab": {
+                "L": 86.36123997774817,
+                "a": 1.0749110692613517,
+                "b": 0.10042283567845095
+              },
+              "pad_detection_confidence": 0.7243169287542803,
+              "color_variance": 7.028405135451972
+            },
+            {
+              "pad_index": 5,
+              "lab": {
+                "L": 91.34509592271064,
+                "a": 0.6933114387641052,
+                "b": 0.03661471172150516
+              },
+              "pad_detection_confidence": 0.7353808271233798,
+              "color_variance": 5.368820380087041
+            }
+          ],
+          "overall_confidence": 0.6862321164183944
+        }
+      },
+      "quality_result": {
+        "success": true,
+        "valid": false,
+        "metrics": {
+          "brightness": 0.4405698399044117,
+          "contrast": 0.15836076231773696,
+          "focus_score": 0.052662317847921594
+        },
+        "errors": [
+          {
+            "type": "contrast",
+            "message": "Image has low contrast (0.16) - ensure clear lighting",
+            "threshold": 0.5,
+            "actual": 0.15836076231773696
+          },
+          {
+            "type": "focus",
+            "message": "Image too blurry (focus score: 0.05) - hold camera steady",
+            "threshold": 0.5,
+            "actual": 0.052662317847921594
+          }
+        ],
+        "warnings": [],
+        "recommendations": [
+          "Ensure clear, even lighting across the test strip",
+          "Hold camera steady while taking photo",
+          "Ensure test strip is in focus before capturing"
+        ]
+      }
+    }
+  ]
+}

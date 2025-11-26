@@ -1,0 +1,183 @@
+{
+  "image_path": "tests/fixtures/PXL_20250427_161135607.MP.jpg",
+  "image_name": "PXL_20250427_161135607.MP",
+  "strip_detection": {
+    "success": true,
+    "strip_region": {
+      "left": 455,
+      "top": 215,
+      "right": 480,
+      "bottom": 1619,
+      "width": 25,
+      "height": 1404,
+      "confidence": 1.0,
+      "detection_method": "yolo+refined",
+      "orientation": "vertical",
+      "angle": 0.9917053937475373
+    },
+    "yolo_confidence": 0.5854478478431702,
+    "method": "yolo_refined"
+  },
+  "color_extraction": {
+    "success": true,
+    "pads_detected": 7,
+    "overall_confidence": 0.7927455954474258,
+    "pads": [
+      {
+        "pad_index": 0,
+        "region": {
+          "pad_index": 0,
+          "x": 455,
+          "y": 215,
+          "width": 25,
+          "height": 42,
+          "left": 455,
+          "top": 215,
+          "right": 480,
+          "bottom": 257
+        },
+        "lab": {
+          "L": 85.41904761904762,
+          "a": 7.560952380952381,
+          "b": 7.024761904761904
+        },
+        "confidence": 0.7891095055178714,
+        "pad_detection_confidence": 0.7891095055178714,
+        "color_variance": 5.041068653748321
+      },
+      {
+        "pad_index": 1,
+        "region": {
+          "pad_index": 1,
+          "x": 457,
+          "y": 390,
+          "width": 20,
+          "height": 20,
+          "left": 457,
+          "top": 390,
+          "right": 477,
+          "bottom": 410
+        },
+        "lab": {
+          "L": 84.9875,
+          "a": 5.4125,
+          "b": 7.19
+        },
+        "confidence": 0.7958054395798912,
+        "pad_detection_confidence": 0.7958054395798912,
+        "color_variance": 5.722622421996365
+      },
+      {
+        "pad_index": 2,
+        "region": {
+          "pad_index": 2,
+          "x": 457,
+          "y": 566,
+          "width": 20,
+          "height": 20,
+          "left": 457,
+          "top": 566,
+          "right": 477,
+          "bottom": 586
+        },
+        "lab": {
+          "L": 84.115,
+          "a": 5.775,
+          "b": 6.7625
+        },
+        "confidence": 0.7943435237531714,
+        "pad_detection_confidence": 0.7943435237531714,
+        "color_variance": 5.941909796004339
+      },
+      {
+        "pad_index": 3,
+        "region": {
+          "pad_index": 3,
+          "x": 457,
+          "y": 741,
+          "width": 20,
+          "height": 20,
+          "left": 457,
+          "top": 741,
+          "right": 477,
+          "bottom": 761
+        },
+        "lab": {
+          "L": 87.4275,
+          "a": 5.35,
+          "b": 5.4175
+        },
+        "confidence": 0.7935227558869631,
+        "pad_detection_confidence": 0.7935227558869631,
+        "color_variance": 6.065024975935599
+      },
+      {
+        "pad_index": 4,
+        "region": {
+          "pad_index": 4,
+          "x": 457,
+          "y": 917,
+          "width": 20,
+          "height": 20,
+          "left": 457,
+          "top": 917,
+          "right": 477,
+          "bottom": 937
+        },
+        "lab": {
+          "L": 89.1325,
+          "a": 5.205,
+          "b": 5.455
+        },
+        "confidence": 0.7910169307657221,
+        "pad_detection_confidence": 0.7910169307657221,
+        "color_variance": 6.440898744121746
+      },
+      {
+        "pad_index": 5,
+        "region": {
+          "pad_index": 5,
+          "x": 457,
+          "y": 1092,
+          "width": 20,
+          "height": 20,
+          "left": 457,
+          "top": 1092,
+          "right": 477,
+          "bottom": 1112
+        },
+        "lab": {
+          "L": 82.3975,
+          "a": 4.9075,
+          "b": 2.14
+        },
+        "confidence": 0.7914456329876721,
+        "pad_detection_confidence": 0.7914456329876721,
+        "color_variance": 6.37659341082924
+      },
+      {
+        "pad_index": 6,
+        "region": {
+          "pad_index": 6,
+          "x": 457,
+          "y": 1268,
+          "width": 20,
+          "height": 20,
+          "left": 457,
+          "top": 1268,
+          "right": 477,
+          "bottom": 1288
+        },
+        "lab": {
+          "L": 96.685,
+          "a": 11.97,
+          "b": 23.4825
+        },
+        "confidence": 0.7939753796406892,
+        "pad_detection_confidence": 0.7939753796406892,
+        "color_variance": 5.997131412876665
+      }
+    ]
+  },
+  "full_pipeline_success": true
+}

@@ -1,0 +1,30 @@
+# Flask web framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+
+# OpenCV for image processing
+opencv-python==4.8.1.78
+
+# NumPy for numerical operations and color space conversions
+numpy==1.24.3
+
+# Color science library for CIEDE2000 color distance calculation
+colormath==3.0.0
+
+# Image processing
+Pillow==10.1.0
+
+# HTTP client for making requests (if needed)
+requests==2.31.0
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Logging and utilities
+python-json-logger==2.0.7
+
+# Machine learning for PCA rotation detection
+scikit-learn==1.6.1
+
+
+

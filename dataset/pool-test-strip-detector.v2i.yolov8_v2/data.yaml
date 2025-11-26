@@ -1,0 +1,14 @@
+path: /Users/poolzoom/Documents/Sites/poolguy-cv-service/dataset/pool-test-strip-detector.v2i.yolov8_v2
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 2
+names: ['label', 'strip']
+
+roboflow:
+  workspace: teststripes
+  project: pool-test-strip-detector-gflao
+  version: 2
+  license: Private
+  url: https://app.roboflow.com/teststripes/pool-test-strip-detector-gflao/2

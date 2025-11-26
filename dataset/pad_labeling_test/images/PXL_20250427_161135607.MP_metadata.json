@@ -1,0 +1,98 @@
+{
+  "original_image": "tests/fixtures/PXL_20250427_161135607.MP.jpg",
+  "original_size": {
+    "width": 992,
+    "height": 1762
+  },
+  "cropped_image": "dataset/pad_labeling_test/images/PXL_20250427_161135607.MP_cropped.jpg",
+  "cropped_size": {
+    "width": 126,
+    "height": 1427
+  },
+  "rotation_angle": 0.026154516891722324,
+  "yolo_confidence_original": 0.5854478478431702,
+  "yolo_confidence_rotated": 0.5892753601074219,
+  "bbox_original": {
+    "x1": 460,
+    "y1": 216,
+    "x2": 567,
+    "y2": 1620
+  },
+  "bbox_rotated": {
+    "x1": 461,
+    "y1": 217,
+    "x2": 567,
+    "y2": 1624
+  },
+  "bbox_cropped": {
+    "x1": 451,
+    "y1": 207,
+    "x2": 577,
+    "y2": 1634,
+    "width": 126,
+    "height": 1427
+  },
+  "strip_dimensions": {
+    "width": 106,
+    "height": 1407
+  },
+  "pca_params": {
+    "foreground_points_count": 165610,
+    "threshold_method": "otsu",
+    "crop_size": [
+      1544,
+      127
+    ],
+    "bbox_original": {
+      "x1": 460,
+      "y1": 216,
+      "x2": 567,
+      "y2": 1620
+    },
+    "bbox_expanded": {
+      "x1": 450,
+      "y1": 146,
+      "x2": 577,
+      "y2": 1690
+    },
+    "expansion": {
+      "x": 10,
+      "y": 70
+    },
+    "centered_points_shape": [
+      165610,
+      2
+    ],
+    "center": [
+      763.562586800314,
+      57.12539701708834
+    ],
+    "pca_components": [
+      [
+        0.9999998958118954,
+        -0.0004564824181754701
+      ],
+      [
+        0.0004564824181754701,
+        0.9999998958118954
+      ]
+    ],
+    "pca_explained_variance": [
+      211792.0070119406,
+      1253.9400118804529
+    ],
+    "pca_explained_variance_ratio": [
+      0.9941142273326596,
+      0.005885772667340382
+    ],
+    "pc1": [
+      0.9999998958118954,
+      -0.0004564824181754701
+    ],
+    "angle_rad": 1.5712528092289255,
+    "angle_deg": 90.02615451689172,
+    "aspect_ratio": 12.15748031496063,
+    "rotation_needed": 0.026154516891722324
+  },
+  "use_rotated_detection": true
+}

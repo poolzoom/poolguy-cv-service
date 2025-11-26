@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Run Viewer - {{IMAGE_NAME}}</title>
+    <link rel="stylesheet" href="/review/static/css/review.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Run Viewer: {{IMAGE_NAME}}</h1>
+        <a href="/review">← Back to Experiments</a>
+        
+        <div class="run-info">
+            <h2>Pipeline Steps</h2>
+            <p>Click on any step thumbnail to view details</p>
+        </div>
+        
+        <div id="steps" class="steps-container">
+            {{STEPS}}
+        </div>
+        
+        <div id="step-detail" class="step-detail" style="display: none;">
+            <h3 id="step-detail-name"></h3>
+            <img id="step-detail-image" src="" alt="Step detail" class="step-detail-image">
+            <div id="step-detail-data" class="step-detail-data"></div>
+        </div>
+    </div>
+    
+    <script>
+        function showStepFromData(element) {
+            const idx = element.getAttribute('data-step-idx');
+            const stepName = element.getAttribute('data-step-name');
+            const imagePath = element.getAttribute('data-step-image');
+            let stepDataStr = element.getAttribute('data-step-data');
+            
+            // Unescape HTML entities
+            stepDataStr = stepDataStr.replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+            
+            let stepData;
+            try {
+                stepData = JSON.parse(stepDataStr);
+            } catch (e) {
+                console.error('Failed to parse step data:', e, stepDataStr);
+                stepData = {};
+            }
+            
+            const detailDiv = document.getElementById('step-detail');
+            document.getElementById('step-detail-name').textContent = stepName;
+            
+            if (imagePath) {
+                const img = document.getElementById('step-detail-image');
+                img.src = imagePath;
+                img.style.display = 'block';
+            } else {
+                document.getElementById('step-detail-image').style.display = 'none';
+            }
+            
+            document.getElementById('step-detail-data').innerHTML = '<pre>' + JSON.stringify(stepData, null, 2) + '</pre>';
+            detailDiv.style.display = 'block';
+            
+            // Scroll to detail
+            detailDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+

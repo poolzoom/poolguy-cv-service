@@ -1,0 +1,37 @@
+{
+  "image_path": "tests/fixtures/PXL_20250427_161114135.jpg",
+  "image_name": "PXL_20250427_161114135",
+  "yolo_result": {
+    "success": true,
+    "bbox": {
+      "x1": 956,
+      "y1": 522,
+      "x2": 1137,
+      "y2": 3338
+    },
+    "confidence": 0.3081030249595642
+  },
+  "strip_result": {
+    "success": true,
+    "strip_region": {
+      "left": 956,
+      "top": 522,
+      "right": 1137,
+      "bottom": 3338
+    },
+    "orientation": "vertical",
+    "angle": 0.0,
+    "handle_position": "top",
+    "confidence": 0.3081030249595642,
+    "visual_log_path": "tests/fixtures/detection_logs/PXL_20250427_161114135/deterministic",
+    "method": "yolo",
+    "yolo_bbox": {
+      "x1": 956,
+      "y1": 522,
+      "x2": 1137,
+      "y2": 3338
+    },
+    "yolo_confidence": 0.3081030249595642
+  },
+  "success": true
+}

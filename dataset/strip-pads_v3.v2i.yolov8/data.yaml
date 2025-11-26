@@ -1,0 +1,14 @@
+names:
+- pads
+nc: 1
+path: /Users/poolzoom/Documents/Sites/poolguy-cv-service/dataset/strip-pads_v3.v2i.yolov8
+test: /Users/poolzoom/Documents/Sites/poolguy-cv-service/dataset/strip-pads_v3.v2i.yolov8/test/images
+train: /Users/poolzoom/Documents/Sites/poolguy-cv-service/dataset/strip-pads_v3.v2i.yolov8/train/images
+val: /Users/poolzoom/Documents/Sites/poolguy-cv-service/dataset/strip-pads_v3.v2i.yolov8/valid/images
+
+roboflow:
+  workspace: teststripes
+  project: strip-pads-ohdu7
+  version: 2
+  license: Private
+  url: https://app.roboflow.com/teststripes/strip-pads-ohdu7/2

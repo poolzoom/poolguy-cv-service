@@ -1,0 +1,15 @@
+{
+  "total_images": 2,
+  "successful": 2,
+  "failed": 0,
+  "success_rate": 1.0,
+  "output_directory": "dataset/pad_labeling_test",
+  "images_directory": "dataset/pad_labeling_test/images",
+  "metadata_directory": "dataset/pad_labeling_test/metadata",
+  "parameters": {
+    "min_confidence": 0.3,
+    "min_strip_width": 50,
+    "min_strip_height": 200,
+    "expected_pad_count": 6
+  }
+}

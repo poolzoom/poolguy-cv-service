@@ -1,0 +1,51 @@
+{
+  "image_path": "tests/fixtures/PXL_20250427_161114135.jpg",
+  "image_name": "PXL_20250427_161114135",
+  "strip_detection": {
+    "success": true,
+    "strip_region": {
+      "left": 998,
+      "top": 522,
+      "right": 1003,
+      "bottom": 3338,
+      "width": 5,
+      "height": 2816,
+      "confidence": 1.0,
+      "detection_method": "yolo+refined",
+      "orientation": "vertical",
+      "angle": -0.11031133681535721
+    },
+    "yolo_confidence": 0.3081030249595642,
+    "method": "yolo_refined"
+  },
+  "color_extraction": {
+    "success": true,
+    "pads_detected": 1,
+    "overall_confidence": 0.8320307549564715,
+    "pads": [
+      {
+        "pad_index": 0,
+        "region": {
+          "pad_index": 0,
+          "x": 998,
+          "y": 874,
+          "width": 4,
+          "height": 4,
+          "left": 998,
+          "top": 874,
+          "right": 1002,
+          "bottom": 878
+        },
+        "lab": {
+          "L": 0.0,
+          "a": 0.0,
+          "b": 0.0
+        },
+        "confidence": 0.8320307549564715,
+        "pad_detection_confidence": 0.8320307549564715,
+        "color_variance": 0.0
+      }
+    ]
+  },
+  "full_pipeline_success": true
+}

@@ -1,0 +1,7 @@
+names:
+- pads
+nc: 1
+path: /Users/poolzoom/Documents/Sites/poolguy-cv-service/dataset/strip-pads.v1i.yolov8
+test: /Users/poolzoom/Documents/Sites/poolguy-cv-service/dataset/strip-pads.v1i.yolov8/valid/images
+train: /Users/poolzoom/Documents/Sites/poolguy-cv-service/dataset/strip-pads.v1i.yolov8/train/images
+val: /Users/poolzoom/Documents/Sites/poolguy-cv-service/dataset/strip-pads.v1i.yolov8/valid/images

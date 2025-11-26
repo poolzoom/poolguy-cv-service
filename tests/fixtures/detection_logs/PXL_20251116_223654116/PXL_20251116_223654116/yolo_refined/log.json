@@ -1,0 +1,160 @@
+{
+  "strategy_name": "yolo_refined",
+  "image_name": "PXL_20251116_223654116",
+  "timestamp": "2025-11-25T15:44:15.027394",
+  "steps": [
+    {
+      "step_name": "00_yolo_input",
+      "description": "YOLO Detection Input",
+      "image_file": "step_00_00_yolo_input.jpg",
+      "data": {
+        "bbox": {
+          "x1": 1501,
+          "y1": 1508,
+          "x2": 1694,
+          "y2": 3591
+        }
+      }
+    },
+    {
+      "step_name": "edge_detection_strict",
+      "description": "Edge Detection (strict params)",
+      "image_file": "step_01_edge_detection_strict.jpg",
+      "data": {
+        "set": "strict",
+        "canny_low": 100,
+        "canny_high": 255,
+        "min_line_length": 1374,
+        "hough_threshold": 45,
+        "max_line_gap": 33,
+        "edge_density": 0.0075672164517657185,
+        "lines_detected": 0
+      }
+    },
+    {
+      "step_name": "edge_detection_moderate",
+      "description": "Edge Detection (moderate params)",
+      "image_file": "step_02_edge_detection_moderate.jpg",
+      "data": {
+        "set": "moderate",
+        "canny_low": 80,
+        "canny_high": 204,
+        "min_line_length": 961,
+        "hough_threshold": 31,
+        "max_line_gap": 33,
+        "edge_density": 0.008572592940436614,
+        "lines_detected": 0
+      }
+    },
+    {
+      "step_name": "edge_detection_relaxed",
+      "description": "Edge Detection (relaxed params)",
+      "image_file": "step_03_edge_detection_relaxed.jpg",
+      "data": {
+        "set": "relaxed",
+        "canny_low": 60,
+        "canny_high": 153,
+        "min_line_length": 687,
+        "hough_threshold": 22,
+        "max_line_gap": 33,
+        "edge_density": 0.011106720921140007,
+        "lines_detected": 0
+      }
+    },
+    {
+      "step_name": "orientation_pca",
+      "description": "Orientation Detection (BBox + Hough)",
+      "image_file": "step_04_orientation_pca.jpg",
+      "data": {
+        "rotation_angle": 0.0,
+        "hough_rotation_angle": 0.0,
+        "rotation_combination": "extreme",
+        "bbox_aspect_ratio": 10.792746113989637,
+        "expected_aspect_ratio": 7.0,
+        "aspect_ratio_suggests_rotation": false,
+        "estimated_rotation_range": [
+          0.0,
+          10.0
+        ],
+        "bbox_width": 193,
+        "bbox_height": 2083,
+        "expanded_width": 211,
+        "expanded_height": 2291,
+        "selected_lines_count": 0,
+        "all_filtered_lines_count": 0,
+        "total_hough_lines": 0,
+        "left_lines_count": 0,
+        "right_lines_count": 0,
+        "canny_low": 60,
+        "canny_high": 153,
+        "hough_threshold": 22,
+        "min_line_length": 687,
+        "angle_tolerance": 15.0,
+        "edge_density": 0.011106720921140007,
+        "param_set": "relaxed"
+      }
+    },
+    {
+      "step_name": "intensity_projection",
+      "description": "Intensity Projection",
+      "image_file": "step_05_intensity_projection.jpg",
+      "data": {
+        "vertical_projection": "<ndarray shape=(211,)>",
+        "horizontal_projection": "<ndarray shape=(2291,)>",
+        "left_edge": 73,
+        "right_edge": 190,
+        "top_edge": 104,
+        "bottom_edge": 2187,
+        "vertical_projection_length": 211,
+        "horizontal_projection_length": 2291
+      }
+    },
+    {
+      "step_name": "edge_detection",
+      "description": "Edge Detection",
+      "image_file": "step_06_edge_detection.jpg",
+      "data": {
+        "left_gradient": 0,
+        "right_gradient": 117,
+        "left_white": 0,
+        "right_white": 117,
+        "left_variance": 0,
+        "right_variance": 117,
+        "final_left": 0,
+        "final_right": 117
+      }
+    },
+    {
+      "step_name": "bbox_tightening",
+      "description": "Bounding Box Tightening",
+      "image_file": "step_07_bbox_tightening.jpg",
+      "data": {
+        "left_reduction": 0,
+        "right_reduction": 1,
+        "top_reduction": 0,
+        "bottom_reduction": 0
+      }
+    },
+    {
+      "step_name": "99_final_refined",
+      "description": "Final Refined Strip",
+      "image_file": "step_08_99_final_refined.jpg",
+      "data": {
+        "original_bbox": {
+          "left": 1501,
+          "top": 1508,
+          "right": 1694,
+          "bottom": 3591
+        },
+        "refined_bbox": {
+          "left": 1565,
+          "top": 1508,
+          "right": 1681,
+          "bottom": 3591
+        },
+        "rotation_angle": 0.0
+      }
+    }
+  ],
+  "final_image": "final_result.jpg"
+}
