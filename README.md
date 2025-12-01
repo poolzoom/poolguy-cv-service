@@ -16,6 +16,9 @@ This service provides image processing capabilities for PoolGuy.ai's test strip 
 - Virtual environment (venv)
 - OpenCV 4.8+
 - Flask 3.0+
+- Tesseract OCR (for text extraction fallback)
+
+**For detailed deployment requirements, see [Deployment Requirements](docs/deployment-requirements.md)**
 
 ## Setup
 
@@ -28,13 +31,26 @@ source venv/bin/activate  # On Mac/Linux
 venv\Scripts\activate  # On Windows
 ```
 
-### 2. Install Dependencies
+### 2. Install System Dependencies
+
+**macOS:**
+```bash
+brew install tesseract
+```
+
+**Ubuntu/Debian:**
+```bash
+sudo apt-get update
+sudo apt-get install -y tesseract-ocr
+```
+
+### 3. Install Python Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Configure Environment
+### 4. Configure Environment
 
 Copy `.env.example` to `.env` and update as needed:
 
@@ -42,7 +58,7 @@ Copy `.env.example` to `.env` and update as needed:
 cp .env.example .env
 ```
 
-### 4. Run the Service
+### 5. Run the Service
 
 ```bash
 # Development mode
@@ -168,6 +184,9 @@ PORT=5001
 ## License
 
 Internal use for PoolGuy.ai project.
+
+
+
 
 
 

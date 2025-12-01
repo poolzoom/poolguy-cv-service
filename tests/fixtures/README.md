@@ -21,3 +21,9 @@ image_path = os.path.join(os.path.dirname(__file__), 'fixtures', 'test-strip.jpg
 
 
 
+
+
+
+
+
+

@@ -52,6 +52,10 @@ class StripDetectionService:
     YOLO2_EXPAND_PIXELS = 100  # Fixed expansion for YOLO 2 (not percentage)
     FINAL_PADDING = 20  # Final padding for output
     
+    # Rotation threshold - skip rotation if angle is smaller than this
+    # Small rotations degrade image quality and can hurt pad detection
+    MIN_ROTATION_ANGLE = 1.0  # degrees
+    
     def __init__(self, yolo_detector: YoloDetector = None, pca_config: Dict = None):
         """Initialize strip detection service."""
         self.yolo_detector = yolo_detector or YoloDetector()
@@ -97,12 +101,21 @@ class StripDetectionService:
         # Step 3: PCA on cropped strip
         angle1, pca_params1 = self._step_pca(ctx, debug, '01_03_pca1', 'PCA 1')
         
-        # Step 4: Apply rotation
-        ctx.apply_rotation(angle1)
-        if debug:
-            visualize_step(debug, ctx.get_current_image(), None,
-                          '01_04_rotated', 'Rotated Image',
-                          f'Rotated by {angle1:.2f}° based on PCA 1')
+        # Step 4: Apply rotation (only if above threshold)
+        # Small rotations degrade image quality and can hurt pad detection
+        if abs(angle1) >= self.MIN_ROTATION_ANGLE:
+            ctx.apply_rotation(angle1)
+            if debug:
+                visualize_step(debug, ctx.get_current_image(), None,
+                              '01_04_rotated', 'Rotated Image',
+                              f'Rotated by {angle1:.2f}° based on PCA 1')
+        else:
+            self.logger.info(f'Skipping rotation: angle {angle1:.2f}° below threshold {self.MIN_ROTATION_ANGLE}°')
+            angle1 = 0.0  # Reset angle since we didn't apply it
+            if debug:
+                visualize_step(debug, ctx.get_current_image(), None,
+                              '01_04_rotated', 'Rotation Skipped',
+                              f'Rotation skipped: {angle1:.2f}° below threshold {self.MIN_ROTATION_ANGLE}°')
         
         # Step 5: Re-crop to where strip should be (transform YOLO 1 to rotated space)
         # Add fixed expansion for YOLO 2 to have room to find the strip
@@ -131,12 +144,21 @@ class StripDetectionService:
         angle2, pca_params2 = self._step_pca(ctx, debug, '01_08_pca2', 'PCA 2 (Iterative)')
         total_angle = angle1 + angle2
         
-        # Step 9: Apply total rotation (replaces previous rotation)
-        ctx.apply_rotation(total_angle)
-        if debug:
-            visualize_step(debug, ctx.get_current_image(), None,
-                          '01_09_rotated_final', 'Final Rotation',
-                          f'Total rotation: {total_angle:.2f}° ({angle1:.2f}° + {angle2:.2f}°)')
+        # Step 9: Apply total rotation (only if above threshold)
+        # Small rotations degrade image quality and can hurt pad detection
+        if abs(total_angle) >= self.MIN_ROTATION_ANGLE:
+            ctx.apply_rotation(total_angle)
+            if debug:
+                visualize_step(debug, ctx.get_current_image(), None,
+                              '01_09_rotated_final', 'Final Rotation',
+                              f'Total rotation: {total_angle:.2f}° ({angle1:.2f}° + {angle2:.2f}°)')
+        else:
+            self.logger.info(f'Skipping final rotation: total angle {total_angle:.2f}° below threshold {self.MIN_ROTATION_ANGLE}°')
+            total_angle = 0.0  # Reset since we didn't apply
+            if debug:
+                visualize_step(debug, ctx.get_current_image(), None,
+                              '01_09_rotated_final', 'Final Rotation Skipped',
+                              f'Rotation skipped: {total_angle:.2f}° below threshold {self.MIN_ROTATION_ANGLE}°')
         
         # Step 10: Final crop - transform YOLO 1 to new rotated space
         final_expected = ctx.transform_coords_original_to_rotated(yolo1_bbox)

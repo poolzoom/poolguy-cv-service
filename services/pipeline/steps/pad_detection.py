@@ -488,7 +488,7 @@ class PadDetectionService:
                 last_bottom = last_y + sorted_detections[-1].get('height', 0)
                 total_range = last_bottom - first_y
                 estimated_count = int(np.round(total_range / (pad_height + expected_spacing)))
-                estimated_count = max(4, min(7, estimated_count))  # Clamp to valid range
+                estimated_count = max(3, min(7, estimated_count))  # Clamp to valid range
             else:
                 estimated_count = len(clustered_detections)
         
@@ -656,12 +656,12 @@ class PadDetectionService:
             f"calculated_count={calculated_count}"
         )
         
-        # Validate: pad count should be between 4 and 7
-        if 4 <= calculated_count <= 7:
+        # Validate: pad count should be between 3 and 7
+        if 3 <= calculated_count <= 7:
             self.logger.info(f"Calculated pad count {calculated_count} is valid")
             return calculated_count
         
-        self.logger.warning(f"Calculated pad count {calculated_count} is outside valid range 4-7")
+        self.logger.warning(f"Calculated pad count {calculated_count} is outside valid range 3-7")
         return None
     
     def _predict_missing_pads(
@@ -1293,9 +1293,9 @@ class PadDetectionService:
                             bottom=y + height
                         ))
                     
-                    # Accept if in valid range (4-7) or if we have at least 1 valid detection
+                    # Accept if in valid range (3-7) or if we have at least 1 valid detection
                     # (Better to return partial results than fail completely)
-                    if 4 <= len(pad_regions) <= 7:
+                    if 3 <= len(pad_regions) <= 7:
                         if effective_pad_count and len(pad_regions) != effective_pad_count:
                             self.logger.info(f"Pattern-based detection found {len(pad_regions)} pads (expected {effective_pad_count})")
                         return PadDetectionResult(
@@ -1307,7 +1307,7 @@ class PadDetectionService:
                         )
                     elif len(pad_regions) > 0:
                         # Accept partial results (1-3 pads) but log warning
-                        self.logger.warning(f"Pattern-based detection found only {len(pad_regions)} pad(s) (expected {effective_pad_count or 'unknown'}, valid range 4-7)")
+                        self.logger.warning(f"Pattern-based detection found only {len(pad_regions)} pad(s) (expected {effective_pad_count or 'unknown'}, valid range 3-7)")
                         return PadDetectionResult(
                             success=True,  # Still return success so pipeline can continue
                             pads=pad_regions,
@@ -1317,11 +1317,11 @@ class PadDetectionService:
                         )
                     else:
                         # No pads at all
-                        self.logger.warning(f"Pattern-based detection found {len(pad_regions)} pads (outside valid range 4-7)")
+                        self.logger.warning(f"Pattern-based detection found {len(pad_regions)} pads (outside valid range 3-7)")
                         return PadDetectionResult(
                             success=False,
                             pads=pad_regions,
-                            error=f'Pattern-based detection found {len(pad_regions)} pads (outside valid range 4-7)',
+                            error=f'Pattern-based detection found {len(pad_regions)} pads (outside valid range 3-7)',
                             error_code='INVALID_COUNT',
                             detected_count=len(pad_regions)
                         )

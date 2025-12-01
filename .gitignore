@@ -195,9 +195,17 @@ opencv_test_data/
 *.bmp
 *.tiff
 *.webp
-!tests/fixtures/**/*.jpg
-!tests/fixtures/**/*.jpeg
-!tests/fixtures/**/*.png
+# Keep only small fixture images for tests (exclude large test images)
+!tests/fixtures/*.jpg
+!tests/fixtures/*.jpeg
+!tests/fixtures/*.png
+# Exclude large test images with specific patterns
+tests/fixtures/PXL_*.jpg
+tests/fixtures/PXL_*.jpeg
+tests/fixtures/PXL_*.MP*.jpg
+tests/fixtures/*bottle*.jpg
+tests/fixtures/*bottle*.jpeg
+tests/fixtures/croped_*.jpeg
 !dataset/**/*.jpg
 !dataset/**/*.jpeg
 !dataset/**/*.png
@@ -241,9 +249,4 @@ models/**/*.csv
 # Cache directories
 .cache/
 *.cache
-
-
-
-
-
 

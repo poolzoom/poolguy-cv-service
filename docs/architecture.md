@@ -237,6 +237,144 @@ services/
       └── color_linear_detector.py
 ```
 
+## Bottle Pipeline Architecture
+
+The bottle pipeline processes test strip bottle images to extract pad names, reference ranges, and color mappings. It's designed to be simpler than the test strip pipeline while handling multiple images when pads wrap around the bottle.
+
+### Pipeline Flow
+
+```
+Image Input(s)
+    ↓
+[Text Extraction Service]
+    ├── OpenAI Vision (Primary)
+    └── Tesseract OCR (Fallback)
+    ↓
+Pad Names + Reference Ranges
+    ↓
+[Pad Detection Service]
+    ├── OpenAI Vision (Primary)
+    ├── YOLO (If bottle model available)
+    └── OpenCV Contour Detection (Fallback)
+    ↓
+Pad Regions (coordinates)
+    ↓
+[Reference Square Detection Service]
+    ├── OpenCV Square Detection
+    └── AI Vision Enhancement
+    ↓
+Reference Color Squares
+    ↓
+[Color Mapping Service]
+    ├── Color Extraction (LAB)
+    └── CIEDE2000 Matching
+    ↓
+Mapped Pads (with names, ranges, colors)
+    ↓
+[Multi-Image Handler] (if multiple images)
+    ├── Overlap Detection (IoU)
+    └── Result Merging
+    ↓
+Final Result
+```
+
+### Service Hierarchy
+
+#### 1. Text Extraction Service (`services/pipeline/steps/bottle/text_extraction.py`)
+
+**Purpose:** Extract pad names and reference ranges from bottle images.
+
+**Methods:**
+- **OpenAI Vision** (Primary): Uses GPT-4o vision API to extract text with context understanding
+- **Tesseract OCR** (Fallback): Local OCR for text extraction
+
+**Output:**
+- List of pad names with locations
+- Reference range text for each pad
+
+#### 2. Bottle Pad Detection Service (`services/pipeline/steps/bottle/pad_detection.py`)
+
+**Purpose:** Detect colored pads on the bottle.
+
+**Methods:**
+- **OpenAI Vision**: AI-powered pad detection
+- **YOLO**: Object detection (if bottle-trained model available)
+- **OpenCV**: Contour-based detection as fallback
+
+**Output:**
+- List of pad regions with coordinates and confidence
+
+#### 3. Reference Square Detection Service (`services/pipeline/steps/bottle/reference_square_detection.py`)
+
+**Purpose:** Detect and extract reference color squares.
+
+**Methods:**
+- **OpenCV**: Square/rectangular region detection
+- **AI Vision**: Understanding square associations and values
+
+**Output:**
+- List of reference squares with LAB colors and associated values
+
+#### 4. Color Mapping Service (`services/pipeline/steps/bottle/color_mapping.py`)
+
+**Purpose:** Map detected pad colors to reference squares.
+
+**Methods:**
+- **CIEDE2000**: Color distance calculation
+- **Color Matching**: Match pad colors to reference squares
+
+**Output:**
+- Complete pad mapping with names, ranges, colors, and mapped values
+
+#### 5. Multi-Image Handler (`services/pipeline/bottle/multi_image_handler.py`)
+
+**Purpose:** Handle multiple images when pads wrap around the bottle.
+
+**Methods:**
+- **IoU Calculation**: Detect overlapping pads across images
+- **Result Merging**: Merge pad detections and deduplicate
+
+**Output:**
+- Unified pad map from all images
+
+### Data Structures
+
+#### BottlePadRegion
+
+```python
+{
+    "pad_index": int,
+    "name": Optional[str],  # Pad name from OCR
+    "region": PadRegion,  # Pad coordinates
+    "reference_range": Optional[str],  # Reference range text
+    "reference_squares": List[ReferenceSquare],  # Reference color squares
+    "detected_color": Optional[LabColor],  # Detected pad color
+    "mapped_value": Optional[str],  # Mapped value based on reference squares
+    "confidence": float  # Overall confidence (0.0-1.0)
+}
+```
+
+#### ReferenceSquare
+
+```python
+{
+    "color": LabColor,  # LAB color of reference square
+    "value": Optional[str],  # Associated value (e.g., "7.2", "low")
+    "region": PadRegion,  # Square coordinates
+    "confidence": float,  # Detection confidence
+    "associated_pad": Optional[int]  # Pad index this square is associated with
+}
+```
+
+### Multi-Image Processing
+
+When multiple images are provided:
+1. Each image is processed independently through the pipeline
+2. Overlapping pads are detected using IoU (Intersection over Union)
+3. Pads with IoU >= threshold (default 0.5) are considered duplicates
+4. Duplicate pads are merged, keeping the highest confidence version
+5. Reference squares are deduplicated by color similarity
+
 ## Testing
 
 Test files are organized in `tests/` directory:

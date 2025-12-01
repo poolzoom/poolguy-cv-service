@@ -117,3 +117,47 @@ class FullPipelineResult(TypedDict):
     processing_time_ms: int
     debug: Optional[dict]  # Debug information if debug mode enabled
 
+
+class ReferenceSquare(TypedDict):
+    """
+    Reference color square for bottle test strips.
+    
+    Contains color information and associated value/range.
+    """
+    color: LabColor  # LAB color of the reference square
+    value: Optional[str]  # Associated value (e.g., "7.2", "low", "high")
+    region: PadRegion  # Coordinates of the reference square
+    confidence: float  # Detection confidence (0.0-1.0)
+    associated_pad: Optional[int]  # Optional pad index this square is associated with
+
+
+class BottlePadRegion(TypedDict):
+    """
+    Pad region on a test strip bottle with name and reference information.
+    
+    All coordinates are absolute (relative to original image).
+    """
+    pad_index: int
+    name: Optional[str]  # Pad name from OCR (e.g., "pH", "Chlorine")
+    region: PadRegion  # Pad coordinates
+    reference_range: Optional[str]  # Reference range text (e.g., "7.2-7.8")
+    reference_squares: List[ReferenceSquare]  # Reference color squares
+    detected_color: Optional[LabColor]  # Detected color from pad
+    mapped_value: Optional[str]  # Mapped value based on reference squares
+    confidence: float  # Overall confidence (0.0-1.0)
+
+
+class BottlePipelineResult(TypedDict):
+    """
+    Complete bottle pipeline result.
+    
+    Includes pad names, reference ranges, and color mappings.
+    """
+    success: bool
+    pads: List[BottlePadRegion]  # List of detected pads with names and colors
+    overall_confidence: float  # Average confidence across all pads
+    images_processed: int  # Number of images processed
+    pads_detected: int  # Total number of pads detected
+    error: Optional[str]  # Error message if failed
+    error_code: Optional[str]  # Error code if failed
+

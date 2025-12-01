@@ -281,6 +281,141 @@ curl -X POST http://localhost:5000/validate-image-quality \
 
 ---
 
+### Map Bottle Pads
+
+Map pads on test strip bottle images, extracting pad names, reference ranges, and color mappings.
+
+**Endpoint:** `POST /map-bottle-pads`
+
+**Request Body:**
+```json
+{
+  "image_paths": ["/path/to/image1.jpg", "/path/to/image2.jpg"],
+  "options": {
+    "detection_method": "auto",
+    "ocr_method": "openai"
+  }
+}
+```
+
+**Parameters:**
+- `image_paths` (array, required): Array of image paths (local paths or S3 signed URLs). Alternatively, use `image_path` (string) for a single image.
+- `options` (object, optional): Processing options:
+  - `detection_method` (string): Pad detection method. Options: `"yolo"`, `"openai"`, `"opencv"`, `"auto"` (default: `"auto"`)
+  - `ocr_method` (string): Text extraction method. Options: `"openai"`, `"tesseract"`, `"auto"` (default: `"auto"`)
+
+**Success Response (200):**
+```json
+{
+  "success": true,
+  "data": {
+    "pads": [
+      {
+        "pad_index": 0,
+        "name": "pH",
+        "region": {
+          "pad_index": 0,
+          "x": 100,
+          "y": 200,
+          "width": 50,
+          "height": 50,
+          "left": 100,
+          "top": 200,
+          "right": 150,
+          "bottom": 250
+        },
+        "reference_range": "7.2-7.8",
+        "reference_squares": [
+          {
+            "color": {"L": 50.0, "a": 0.0, "b": 0.0},
+            "value": "7.2",
+            "region": {...},
+            "confidence": 0.95,
+            "associated_pad": 0
+          },
+          {
+            "color": {"L": 60.0, "a": 5.0, "b": 10.0},
+            "value": "7.8",
+            "region": {...},
+            "confidence": 0.92,
+            "associated_pad": 0
+          }
+        ],
+        "detected_color": {"L": 55.0, "a": 2.0, "b": 5.0},
+        "mapped_value": "7.5",
+        "confidence": 0.92
+      }
+    ],
+    "overall_confidence": 0.90,
+    "images_processed": 2,
+    "pads_detected": 6,
+    "processing_time_ms": 2500
+  }
+}
+```
+
+**Response Fields:**
+- `pads`: Array of detected pads, each containing:
+  - `pad_index`: Zero-based index of the pad
+  - `name`: Pad name extracted from text (e.g., "pH", "Chlorine")
+  - `region`: Pad coordinates in original image space
+  - `reference_range`: Reference range text (e.g., "7.2-7.8")
+  - `reference_squares`: Array of reference color squares showing expected colors for different values
+  - `detected_color`: LAB color values of the detected pad
+  - `mapped_value`: Mapped value based on reference squares
+  - `confidence`: Overall confidence score (0.0-1.0)
+- `overall_confidence`: Average confidence across all pads
+- `images_processed`: Number of images processed
+- `pads_detected`: Total number of unique pads detected
+- `processing_time_ms`: Total processing time in milliseconds
+
+**Error Response (400):**
+```json
+{
+  "success": false,
+  "error": "Either image_paths (array) or image_path (string) is required",
+  "error_code": "MISSING_PARAMETER"
+}
+```
+
+**Error Response (500):**
+```json
+{
+  "success": false,
+  "error": "Pad detection failed with all methods",
+  "error_code": "PAD_DETECTION_FAILED"
+}
+```
+
+**Example:**
+```bash
+curl -X POST http://localhost:5000/map-bottle-pads \
+  -H "Content-Type: application/json" \
+  -d '{
+    "image_paths": ["/path/to/bottle1.jpg", "/path/to/bottle2.jpg"],
+    "options": {
+      "detection_method": "auto",
+      "ocr_method": "openai"
+    }
+  }'
+```
+
+**Pipeline Flow:**
+The `/map-bottle-pads` endpoint processes images through a four-step pipeline:
+1. **Text Extraction**: Extracts pad names and reference ranges using OCR (OpenAI Vision or Tesseract)
+2. **Pad Detection**: Detects colored pads on the bottle using YOLO, OpenAI Vision, or OpenCV
+3. **Reference Square Detection**: Detects and extracts reference color squares that show expected colors
+4. **Color Mapping**: Maps detected pad colors to reference squares and calculates mapped values
+
+**Multi-Image Support:**
+When multiple images are provided (e.g., when pads wrap around the bottle):
+- Each image is processed separately
+- Overlapping pads are detected using IoU (Intersection over Union)
+- Results are merged, removing duplicate pads
+- Reference squares are deduplicated by color similarity
+
+---
+
 ## Error Codes
 
 | Code | Description |
@@ -294,6 +429,10 @@ curl -X POST http://localhost:5000/validate-image-quality \
 | `STRIP_CROP_FAILED` | Failed to crop strip region from image |
 | `PAD_DETECTION_FAILED` | Failed to detect pads in strip region |
 | `COLOR_EXTRACTION_FAILED` | Failed to extract colors from pads |
+| `TEXT_EXTRACTION_FAILED` | Failed to extract text from bottle image |
+| `REFERENCE_SQUARE_DETECTION_FAILED` | Failed to detect reference color squares |
+| `COLOR_MAPPING_FAILED` | Failed to map colors to reference ranges |
+| `IMAGE_PROCESSING_FAILED` | Failed to process any images |
 | `INTERNAL_ERROR` | Unexpected server error |
 
 ## Response Format
@@ -419,6 +558,9 @@ When `normalize_white: true` (default):
 - Uses these regions as reference for color normalization
 - Improves color accuracy across different lighting conditions
 - Falls back to default method if white regions can't be detected
+
+
+
 
 
 

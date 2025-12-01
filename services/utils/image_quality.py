@@ -16,10 +16,12 @@ class ImageQualityService:
     """Service for validating image quality metrics."""
     
     # Quality thresholds (configurable via environment)
+    # Note: Test strip images naturally have lower contrast and focus scores
+    # due to subtle color differences and texture patterns
     BRIGHTNESS_MIN = 0.3
     BRIGHTNESS_MAX = 0.9
-    CONTRAST_MIN = 0.5
-    FOCUS_MIN = 0.5
+    CONTRAST_MIN = 0.1  # Lowered from 0.5 - test strips have subtle colors
+    FOCUS_MIN = 0.2     # Lowered from 0.5 - test strips may appear less sharp
     
     def __init__(self):
         """Initialize image quality service."""

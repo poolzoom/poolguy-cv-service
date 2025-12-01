@@ -91,3 +91,9 @@ def crop_image_to_strip(
         return None, f'Error cropping image: {str(e)}'
 
 
+
+
+
+
+
+

@@ -56,10 +56,30 @@ def load_image(image_path: str, timeout: int = 30) -> np.ndarray:
             raise ValueError(f'Image is empty: {image_path}')
         
         height, width = image.shape[:2]
+        
+        # Minimum size validation
         if height < 10 or width < 10:
             raise ValueError(f'Image too small: {width}x{height} pixels')
         
-        logger.debug(f'Successfully loaded image: {width}x{height} pixels')
+        # Maximum size validation (prevent memory exhaustion)
+        MAX_IMAGE_DIMENSION = 10000  # 10K pixels per side
+        MAX_IMAGE_PIXELS = 50_000_000  # ~50MP total (reasonable limit)
+        
+        total_pixels = height * width
+        
+        if height > MAX_IMAGE_DIMENSION or width > MAX_IMAGE_DIMENSION:
+            raise ValueError(
+                f'Image dimension too large: {width}x{height} pixels '
+                f'(max: {MAX_IMAGE_DIMENSION} per side)'
+            )
+        
+        if total_pixels > MAX_IMAGE_PIXELS:
+            raise ValueError(
+                f'Image too large: {total_pixels:,} pixels '
+                f'(max: {MAX_IMAGE_PIXELS:,})'
+            )
+        
+        logger.debug(f'Successfully loaded image: {width}x{height} pixels ({total_pixels:,} total)')
         return image
         
     except requests.RequestException as e:
@@ -104,6 +124,12 @@ def get_image_info(image: np.ndarray) -> dict:
         'dtype': str(image.dtype),
         'size_bytes': image.nbytes
     }
+
+
+
+
+
+
 
 
 

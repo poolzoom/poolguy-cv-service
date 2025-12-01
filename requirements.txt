@@ -26,5 +26,15 @@ python-json-logger==2.0.7
 # Machine learning for PCA rotation detection
 scikit-learn==1.6.1
 
+# OCR for text extraction (fallback)
+pytesseract==0.3.10
+
+# Rate limiting
+Flask-Limiter==3.5.0
+
+
+
+
+
 
 

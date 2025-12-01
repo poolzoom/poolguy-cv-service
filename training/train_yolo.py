@@ -69,7 +69,7 @@ def validate_dataset(data_yaml: str) -> bool:
 
 def train_yolo(
     data_yaml: str,
-    model_name: str = 'yolov8n.pt',
+    model_name: str = 'models/yolov8n.pt',
     epochs: int = 50,
     imgsz: int = 640,
     batch_size: int = 16,
@@ -80,7 +80,8 @@ def train_yolo(
     
     Args:
         data_yaml: Path to dataset YAML file (Roboflow export format)
-        model_name: YOLO model to use (yolov8n.pt, yolov11n.pt, etc.)
+        model_name: YOLO model to use (models/yolov8n.pt, yolov11n.pt, etc.)
+                   Can be a path to local model or a model name (will download if not found)
         epochs: Number of training epochs
         imgsz: Image size for training
         batch_size: Batch size for training
@@ -196,8 +197,8 @@ Examples:
     parser.add_argument(
         '--model',
         type=str,
-        default='yolov8n.pt',
-        help='YOLO model to use (default: yolov8n.pt). Options: yolov8n.pt, yolov8s.pt, yolov8m.pt, yolov8l.pt, yolov8x.pt, yolov11n.pt, etc.'
+        default='models/yolov8n.pt',
+        help='YOLO model to use (default: models/yolov8n.pt). Options: models/yolov8n.pt, yolov8s.pt, yolov8m.pt, yolov8l.pt, yolov8x.pt, yolov11n.pt, etc. Can be a local path or model name (will download if not found).'
     )
     
     parser.add_argument(
@@ -256,6 +257,8 @@ Examples:
 
 if __name__ == '__main__':
     main()
+
+
 
 
 

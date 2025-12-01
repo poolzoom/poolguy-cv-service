@@ -66,10 +66,10 @@ class ColorExtractionService:
                 }
             
             # Validate pad count
-            if not (4 <= expected_pad_count <= 7):
+            if not (3 <= expected_pad_count <= 7):
                 return {
                     'success': False,
-                    'error': f'expected_pad_count must be between 4 and 7, got {expected_pad_count}',
+                    'error': f'expected_pad_count must be between 3 and 7, got {expected_pad_count}',
                     'error_code': 'INVALID_PARAMETER'
                 }
             
@@ -86,36 +86,40 @@ class ColorExtractionService:
             # Detect white regions between pads for normalization
             white_regions = []
             white_norm_success = False
-            if normalize_white and pad_regions and len(pad_regions) > 1:
-                white_regions = self._detect_white_regions_between_pads(
-                    lab_image, pad_regions, image
-                )
-                if white_regions:
-                    try:
-                        # Use detected white regions for normalization
-                        lab_image = self._normalize_white_balance_with_regions(
-                            lab_image, white_regions
-                        )
-                        white_norm_success = True
-                        self.logger.debug(f'White balance normalization applied using {len(white_regions)} white regions')
-                    except Exception as e:
-                        self.logger.warning(f'White balance normalization failed: {e}')
-                else:
-                    # Fallback to default method
-                    try:
-                        lab_image = normalize_white_balance(lab_image)
-                        white_norm_success = True
-                        self.logger.debug('White balance normalization applied (fallback method)')
-                    except Exception as e:
-                        self.logger.warning(f'White balance normalization failed: {e}')
-            elif normalize_white:
-                # No pad regions, use default method
-                try:
-                    lab_image = normalize_white_balance(lab_image)
-                    white_norm_success = True
-                    self.logger.debug('White balance normalization applied (default method)')
-                except Exception as e:
-                    self.logger.warning(f'White balance normalization failed: {e}')
+            # NOTE: White balance normalization temporarily disabled for debugging/testing.
+            # The normalization was causing color shifts that reduced accuracy in some cases.
+            # Re-enable when normalization algorithm is improved or when testing shows it's needed.
+            # Expected re-enable: After validation with production test strip images.
+            # if normalize_white and pad_regions and len(pad_regions) > 1:
+            #     white_regions = self._detect_white_regions_between_pads(
+            #         lab_image, pad_regions, image
+            #     )
+            #     if white_regions:
+            #         try:
+            #             # Use detected white regions for normalization
+            #             lab_image = self._normalize_white_balance_with_regions(
+            #                 lab_image, white_regions
+            #             )
+            #             white_norm_success = True
+            #             self.logger.debug(f'White balance normalization applied using {len(white_regions)} white regions')
+            #         except Exception as e:
+            #             self.logger.warning(f'White balance normalization failed: {e}')
+            #     else:
+            #         # Fallback to default method
+            #         try:
+            #             lab_image = normalize_white_balance(lab_image)
+            #             white_norm_success = True
+            #             self.logger.debug('White balance normalization applied (fallback method)')
+            #         except Exception as e:
+            #             self.logger.warning(f'White balance normalization failed: {e}')
+            # elif normalize_white:
+            #     # No pad regions, use default method
+            #     try:
+            #         lab_image = normalize_white_balance(lab_image)
+            #         white_norm_success = True
+            #         self.logger.debug('White balance normalization applied (default method)')
+            #     except Exception as e:
+            #         self.logger.warning(f'White balance normalization failed: {e}')
             
             # Debug: Visualize white reference regions
             if debug and white_regions:
@@ -1798,16 +1802,17 @@ class ColorExtractionService:
         all_white = np.concatenate(white_pixels, axis=0)
         ref_lab = np.mean(all_white, axis=0)
         
-        # Target white (L=100, a=128, b=128 in OpenCV LAB format)
-        target_lab = np.array([100.0, 128.0, 128.0])
+        # Target white in OpenCV 8-bit LAB format:
+        # L=255 (max brightness), a=128 (neutral), b=128 (neutral)
+        target_lab = np.array([255.0, 128.0, 128.0])
         
         # Calculate adjustment factors
         adjustment = target_lab - ref_lab
         
         # Apply adjustment to entire image
         normalized = lab_image.astype(np.float32) + adjustment
-        # Clamp L to 0-100, a and b to 0-255
-        normalized[:, :, 0] = np.clip(normalized[:, :, 0], 0, 100)
+        # Clamp all channels to valid 8-bit range (0-255)
+        normalized[:, :, 0] = np.clip(normalized[:, :, 0], 0, 255)
         normalized[:, :, 1] = np.clip(normalized[:, :, 1], 0, 255)
         normalized[:, :, 2] = np.clip(normalized[:, :, 2], 0, 255)
         normalized = normalized.astype(np.uint8)

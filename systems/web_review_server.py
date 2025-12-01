@@ -142,15 +142,40 @@ def create_review_routes(flask_app, experiments_dir: str = "experiments"):
     def review_static(file_path: str):
         """Serve static files (images, CSS, JS)."""
         try:
+            # Security: Prevent path traversal attacks
+            import os
+            normalized = os.path.normpath(file_path)
+            if '..' in normalized or normalized.startswith('/'):
+                logger.warning(f"Path traversal attempt detected: {file_path}")
+                return "Invalid path", 400
+            
             # Handle CSS/JS files from web_review/static
             if file_path.startswith('css/') or file_path.startswith('js/'):
                 static_dir = Path(__file__).parent.parent / 'web_review' / 'static'
-                if not (static_dir / file_path).exists():
+                target_path = static_dir / normalized
+                
+                # Ensure path is within static_dir (prevent traversal)
+                try:
+                    target_path.resolve().relative_to(static_dir.resolve())
+                except ValueError:
+                    logger.warning(f"Path outside static directory: {file_path}")
+                    return "Invalid path", 403
+                
+                if not target_path.exists():
                     return "File not found", 404
-                return send_from_directory(str(static_dir), file_path)
+                
+                return send_from_directory(str(static_dir), normalized)
             
             # Handle image files from experiments directory
-            file_path_obj = exp_dir / file_path
+            file_path_obj = exp_dir / normalized
+            
+            # Ensure path is within experiments directory (prevent traversal)
+            try:
+                file_path_obj.resolve().relative_to(exp_dir.resolve())
+            except ValueError:
+                logger.warning(f"Path outside experiments directory: {file_path}")
+                return "Invalid path", 403
+            
             if not file_path_obj.exists():
                 logger.warning(f"File not found: {file_path_obj}")
                 return "File not found", 404
