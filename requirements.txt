@@ -32,6 +32,9 @@ pytesseract==0.3.10
 # Rate limiting
 Flask-Limiter==3.5.0
 
+# Production WSGI server
+gunicorn==21.2.0
+
 
 
 
